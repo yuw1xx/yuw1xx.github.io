@@ -203,22 +203,82 @@ body.light .project-card {
   text-align: center;
 }
 
+/* Social badges */
+.social-badge {
+  display: inline-block;
+  position: relative;
+  margin: 0.4rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 9999px;
+  background: gray; /* fallback */
+  font-weight: 600;
+  font-family: var(--font);
+  color: white;
+  user-select: none;
+  cursor: default;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  min-width: max-content;
+}
+
+.social-badge:hover {
+  transform: translateY(-3px);
+}
+
+/* Both texts stacked, only one visible at a time */
 .social-badge {
   display: inline-block;
   margin: 0.3rem 0.5rem;
   padding: 0.4rem 1.2rem;
-  border-radius: 9999px; /* pill shape */
+  border-radius: 9999px;
   font-weight: 600;
   font-family: var(--font);
   color: white;
   user-select: none;
   cursor: default;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s ease;
 }
 
 .social-badge:hover {
   transform: translateY(-3px);
+}
+
+/* Inner text spans */
+.social-badge .label,
+.social-badge .value {
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Default state */
+.social-badge .value {
+  opacity: 0;
+  transform: translateY(100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.social-badge .label {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+/* Hover state */
+.social-badge:hover .label {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.social-badge:hover .value {
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 /* Brand gradients */
