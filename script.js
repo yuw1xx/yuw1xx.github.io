@@ -16,4 +16,3 @@ updateThemeIcon(); // Run once on load
 aboutBtn.addEventListener('click', () => {
   aboutBox.classList.toggle('show');
 });
-
