@@ -4,7 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const aboutBox = document.getElementById('about-text');
   const ageSpan = document.getElementById("age");
 
-  // Theme toggle
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light');
+  } else if (savedTheme === 'dark') {
+    document.body.classList.remove('light');
+  }
+
   function updateThemeIcon() {
     toggleButton.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
   }
@@ -13,19 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('light');
       updateThemeIcon();
+
+      if (document.body.classList.contains('light')) {
+        localStorage.setItem('theme', 'light');
+      } else {
+        localStorage.setItem('theme', 'dark');
+      }
     });
 
-    updateThemeIcon(); // Run once on load
+    updateThemeIcon();
   }
 
-  // About toggle
   if (aboutBtn && aboutBox) {
     aboutBtn.addEventListener('click', () => {
       aboutBox.classList.toggle('show');
     });
   }
 
-  // Dynamic Age
   if (ageSpan) {
     const birthday = new Date("2007-04-10");
     const today = new Date();
@@ -44,30 +54,26 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("No element with ID 'age' found.");
   }
 
-  // Emoji pop-out and fall effect on hover, only one at a time
   let emojiActive = false;
 
   document.querySelectorAll('.emoji-hover').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      if (emojiActive) return; // Skip if an emoji is already active
+      if (emojiActive) return;
 
       emojiActive = true;
 
       const emoji = el.dataset.emoji || '✨';
 
-      // Create emoji element
       const span = document.createElement('span');
       span.textContent = emoji;
       span.className = 'falling-emoji';
 
-      // Position it above the hovered word (centered)
       const rect = el.getBoundingClientRect();
       span.style.left = `${rect.left + rect.width / 2}px`;
       span.style.top = `${rect.top - 30}px`;
 
       document.body.appendChild(span);
 
-      // Remove element after animation ends and reset flag
       span.addEventListener('animationend', () => {
         span.remove();
         emojiActive = false;
