@@ -4,38 +4,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const aboutBox = document.getElementById('about-text');
   const ageSpan = document.getElementById("age");
 
+  // --- THEME PERSISTENCE ---
+
+  // Load saved theme from localStorage (default to dark if nothing saved)
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'light') {
     document.body.classList.add('light');
-  } else if (savedTheme === 'dark') {
+  } else {
     document.body.classList.remove('light');
   }
 
+  // Update the toggle button icon
   function updateThemeIcon() {
+    if (!toggleButton) return;
     toggleButton.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
   }
 
+  // Setup toggle button click handler
   if (toggleButton) {
     toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('light');
-      updateThemeIcon();
 
+      // Save current theme to localStorage
       if (document.body.classList.contains('light')) {
         localStorage.setItem('theme', 'light');
       } else {
         localStorage.setItem('theme', 'dark');
       }
+
+      updateThemeIcon();
     });
 
+    // Initialize icon on page load
     updateThemeIcon();
   }
 
+  // --- ABOUT TOGGLE ---
   if (aboutBtn && aboutBox) {
     aboutBtn.addEventListener('click', () => {
       aboutBox.classList.toggle('show');
     });
   }
 
+  // --- DYNAMIC AGE ---
   if (ageSpan) {
     const birthday = new Date("2007-04-10");
     const today = new Date();
@@ -54,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("No element with ID 'age' found.");
   }
 
+  // --- EMOJI POP-OUT & FALL EFFECT (ONE AT A TIME) ---
   let emojiActive = false;
 
   document.querySelectorAll('.emoji-hover').forEach(el => {
@@ -61,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (emojiActive) return;
 
       emojiActive = true;
-
       const emoji = el.dataset.emoji || '✨';
 
       const span = document.createElement('span');
