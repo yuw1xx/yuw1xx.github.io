@@ -46,6 +46,32 @@ h2 {
   text-align: center;
 }
 
+/* top bar */
+.top-bar-buttons {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.6rem;
+  z-index: 1000;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: rgba(85, 83, 88, 0.6);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.button-link:hover {
+  background: rgba(100, 98, 105, 0.8);
+}
+
+
 /* headline (the top text) */
 .headline {
   background: var(--gradient-dark);
@@ -209,10 +235,9 @@ footer {
 
 #theme-toggle {
   position: absolute;
-  top: 1rem;
+  top: 0rem;
   right: 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
   border: none;
   border-radius: 8px;
@@ -221,6 +246,10 @@ footer {
   cursor: pointer;
   transition: background 0.3s ease;
   z-index: 1000;
+}
+
+#theme-toggle:hover {
+  background: #6a676e;
 }
 
 .about-social {
@@ -419,4 +448,34 @@ body.light .project-card {
   color: var(--text-muted);
   margin-top: 0.5rem;
   line-height: 1.5;
+}
+
+/* falling emoji */
+.falling-emoji {
+  position: fixed;
+  font-size: 2.5rem;
+  pointer-events: none;
+  user-select: none;
+  animation: jumpFall 3s forwards;
+  will-change: transform, opacity;
+  z-index: 9999;
+}
+
+@keyframes jumpFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  20% {
+    transform: translateY(-50px) scale(1.4) rotate(20deg);
+    animation-timing-function: ease-in;
+  }
+  30% {
+    transform: translateY(-30px) scale(1.2) rotate(10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(150vh) scale(0.6) rotate(360deg);
+  }
 }
