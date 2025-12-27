@@ -4,11 +4,10 @@ async function fetchGitHubProjects() {
     const container = document.getElementById('github-projects');
 
     try {
-        // Fetches your top 2 most recently updated public repositories
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=2`);
         const repos = await response.json();
 
-        container.innerHTML = ''; // Clear loading text
+        container.innerHTML = '';
 
         repos.forEach(repo => {
             const projectHTML = `
@@ -33,11 +32,24 @@ document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
 const openBtn = document.getElementById('open-journey');
 const closeBtn = document.getElementById('close-overlay');
 const overlay = document.getElementById('journey-overlay');
+const rootElement = document.documentElement;
 
-openBtn.addEventListener('click', () => overlay.classList.remove('hidden'));
-closeBtn.addEventListener('click', () => overlay.classList.add('hidden'));
+openBtn.addEventListener('click', () => {
+    overlay.classList.remove('hidden');
+    rootElement.classList.add('stop-scrolling');
+});
 
-// Close overlay if user clicks the blurred background
+const closeModal = () => {
+    overlay.classList.add('hidden');
+    rootElement.classList.remove('stop-scrolling');
+};
+
+closeBtn.addEventListener('click', closeModal);
+
+// Close on background click
+overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+});
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.classList.add('hidden');
 });
