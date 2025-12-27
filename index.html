@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>yuwixx | Developer</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+
+  <main class="bento-container">
+    <header class="bento-item hero-tile">
+      <h1 class="headline">yuwixx</h1>
+      <div class="badge-row">
+        <span class="pronouns-inline">he/they</span>
+        <span class="status-dot status-available">Available for projects</span>
+      </div>
+    </header>
+
+    <section id="about" class="bento-item about-tile">
+      <h3>About Me</h3>
+      <p>Hello!</p>
+      <p>I'm building websites since 2019 and exploring other langugaes like C#, PHP and Java :></p>
+    </section>
+
+    <aside class="bento-item social-tile">
+      <h3>Connect</h3>
+      <div class="social-stack">
+        <a href="https://github.com/yuw1xx" class="social-btn github" target="_blank">GitHub</a>
+        <a href="https://discord.com/users/712648730423197697" class="social-btn discord" target="_blank">Discord</a>
+        <!-- <a href="https://yuwixx.itch.io/" class="social-btn itchio" target="_blank">itch.io</a> -->
+      </div>
+    </aside>
+
+    <section class="bento-item projects-tile">
+      <h3>Latest Projects</h3>
+      <div id="github-projects" class="project-list-dynamic">
+        <div class="loading-text">Fetching latest work...</div>
+      </div>
+    </section>
+
+    <section class="bento-item journey-preview-tile">
+      <h3>Experience</h3>
+      <div class="preview-content">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Years Coding</span>
+      </div>
+      <button id="open-journey" class="journey-trigger-btn">View Journey →</button>
+    </section>
+  </main>
+
+  <div id="journey-overlay" class="overlay hidden">
+    <div class="overlay-content">
+      <button id="close-overlay" class="close-btn">&times;</button>
+      <div class="overlay-grid">
+        <section class="stack-section">
+          <h3>Technical Stack</h3>
+          <div class="stack-group">
+            <span class="group-label">Mastered</span>
+            <div class="tags">
+              <span class="tag">HTML5</span><span class="tag">CSS3</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <span class="group-label">Exploring</span>
+            <div class="tags">
+              <span class="tag">Java</span><span class="tag">JS</span><span class="tag">C#</span><span class="tag">PHP</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="journey-section">
+          <h3>The Journey</h3>
+          <div class="timeline">
+            <div class="timeline-item"><span class="year">2025</span><p>Learning Java and Android Studio</p></div>
+            <div class="timeline-item"><span class="year">2022</span><p>Started learning C#</p></div>
+            <div class="timeline-item"><span class="year">2020</span><p>Created my first website</p></div>
+            <div class="timeline-item"><span class="year">2019</span><p>First steps in HTML</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="github-fetch.js"></script>
+</body>
+</html>

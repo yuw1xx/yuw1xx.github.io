@@ -1,0 +1,40 @@
+/* 404 Specific Layout */
+.error-page {
+    justify-content: center;
+    align-items: center;
+}
+
+.error-container {
+    width: 100%;
+    max-width: 500px; /* Slimmer for focus */
+    padding: 2rem;
+}
+
+.error-tile {
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.error-tile .headline {
+    font-size: 6rem; /* Make the 404 big and bold */
+    background: linear-gradient(to right, #f87171, #6366f1);
+    -webkit-background-clip: text;
+}
+
+.error-content h3 {
+    margin-top: 1rem;
+    color: var(--text-main);
+    font-size: 1.2rem;
+}
+
+.error-content p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.error-tile .social-stack {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
