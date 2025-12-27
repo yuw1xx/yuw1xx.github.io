@@ -50,6 +50,24 @@ closeBtn.addEventListener('click', closeModal);
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeModal();
 });
+
+// Email decryption logic
+const emailLink = document.querySelector('.email-btn');
+
+if (emailLink) {
+    emailLink.addEventListener('click', (e) => {
+        // Prevents the browser from jumping to the top of the page
+        e.preventDefault();
+
+        // Decode the hidden attributes
+        const user = atob(emailLink.getAttribute('data-user'));
+        const domain = atob(emailLink.getAttribute('data-domain'));
+        const fullEmail = `${user}@${domain}`;
+
+        // Trigger the mail application
+        window.location.href = `mailto:${fullEmail}`;
+    });
+}
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.classList.add('hidden');
 });
