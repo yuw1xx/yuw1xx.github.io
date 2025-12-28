@@ -59,6 +59,22 @@ body {
   transition: all 0.1s ease-out;
 }
 
+.cursor-clicking .cursor-dot {
+  transform: translate(-50%, -50%) scale(0.6);
+  background-color: #fff;
+}
+
+.cursor-clicking .cursor-outline {
+  transform: translate(-50%, -50%) scale(0.85)
+  border-color: var(--accent);
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+.cursor-active .cursor-outline {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: var(--accent);
+}
+
 .bento-container {
   width: 100%;
   max-width: 1000px;
