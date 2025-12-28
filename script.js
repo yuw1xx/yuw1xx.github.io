@@ -80,13 +80,26 @@ window.addEventListener("mousemove", (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
 
+    // Instant move for the dot
     dot.style.left = `${posX}px`;
     dot.style.top = `${posY}px`;
 
+    // Animate the outline to follow with a slight delay
     outline.animate({
         left: `${posX}px`,
         top: `${posY}px`
     }, { duration: 500, fill: "forwards" });
+});
+
+// --- NEW: CLICK ANIMATION LOGIC ---
+// Add class on mouse press
+window.addEventListener("mousedown", () => {
+    document.body.classList.add("cursor-clicking");
+});
+
+// Remove class on mouse release
+window.addEventListener("mouseup", () => {
+    document.body.classList.remove("cursor-clicking");
 });
 
 // --- HOVER STATE LOGIC ---
@@ -103,5 +116,5 @@ const initCursorHover = () => {
     });
 };
 
-// Call it immediately for static buttons
+// Call immediately
 initCursorHover();
