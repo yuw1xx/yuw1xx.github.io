@@ -17,6 +17,10 @@
   cursor: none !important;
 }
 
+a, button, .social-btn, .project-card, .kofi, #open-journey {
+    cursor: none !important;
+}
+
 body {
   margin: 0;
   background-color: var(--bg);
