@@ -150,8 +150,7 @@ h3 {
 .social-btn:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
 
 .email-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateX(5px);
 }
 
