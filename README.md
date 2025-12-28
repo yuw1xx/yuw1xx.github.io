@@ -50,7 +50,7 @@ This project was built to explore **Glassmorphism** and **Bento Grid** layouts. 
 <details> <summary><b>View Custom Cursor Interaction</b></summary> The cursor uses the <code>Web Animations API</code> (animate method) for the outer ring, which provides hardware-accelerated movement for a butter-smooth 60fps experience. </details>
 
 📸 Desktop View
-<p align="center"> <img src="https://www.google.com/search?q=https://raw.githubusercontent.com/yuw1xx/website/main/image_f10c1e.png" width="100%" alt="yuwixx portfolio bento grid"> </p>
+<p align="center"> <img src="https://raw.githubusercontent.com/yuw1xx/website/c649d2879866259a96250f65ba80b5124221a333/desktopview.png" width="100%" alt="yuwixx portfolio bento grid"> </p>
 
 ☕ Support My Journey
 If you like my work, feel free to support me! Every coffee fuels more code and learning.
