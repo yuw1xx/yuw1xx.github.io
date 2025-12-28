@@ -71,3 +71,37 @@ if (emailLink) {
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.classList.add('hidden');
 });
+
+// --- CUSTOM CURSOR LOGIC ---
+const dot = document.querySelector(".cursor-dot");
+const outline = document.querySelector(".cursor-outline");
+
+window.addEventListener("mousemove", (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    dot.style.left = `${posX}px`;
+    dot.style.top = `${posY}px`;
+
+    outline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// --- HOVER STATE LOGIC ---
+const initCursorHover = () => {
+    const clickables = document.querySelectorAll('a, button, .social-btn, .project-card, #open-journey');
+
+    clickables.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            document.body.classList.add('cursor-active');
+        });
+        el.addEventListener('mouseleave', () => {
+            document.body.classList.remove('cursor-active');
+        });
+    });
+};
+
+// Call it immediately for static buttons
+initCursorHover();
