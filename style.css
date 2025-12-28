@@ -34,45 +34,43 @@ body {
 }
 
 /* Custom Cursor Styling */
-.cursor-dot, .cursor-outline {
+.cursor-outline {
   pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  z-index: 9999;
-  transition: opacity 0.3s ease;
-}
+  z-index: 10000;
 
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--accent);
-}
+  
+  border: 1.5px solid rgba(165, 180, 252, 0.5);
+  background-color: rgba(99, 102, 241, 0.02);
+  backdrop-filter: blur(1px);
 
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(4px);
-  transition: all 0.1s ease-out;
-}
+  
+  transform: translate(-50%, -50%) scale(1);
 
-.cursor-clicking .cursor-dot {
-  transform: translate(-50%, -50%) scale(0.6);
-  background-color: #fff;
-}
-
-.cursor-clicking .cursor-outline {
-  transform: translate(-50%, -50%) scale(0.85)
-  border-color: var(--accent);
-  background-color: rgba(99, 102, 241, 0.1);
+  
+  transition: opacity 0.3s ease,
+  border-color 0.3s ease,
+  background-color 0.3s ease,
+  width 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+  height 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .cursor-active .cursor-outline {
-  transform: translate(-50%, -50%) scale(1.5);
-  border-color: var(--accent);
+  width: 20px;
+  height: 20px;
+  border-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.cursor-clicking .cursor-outline {
+  transform: translate(-50%, -50%) scale(0.75);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .bento-container {
