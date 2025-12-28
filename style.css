@@ -150,9 +150,9 @@ h3 {
 .social-btn:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
 
 .email-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  transform: translateX(5px);
 }
 
 /* Ko-Fi Button - Clean & Aligned */
