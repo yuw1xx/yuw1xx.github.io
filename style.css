@@ -380,4 +380,8 @@ h3 {
     padding: 2rem 1.5rem !important;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
+
+  * {
+    cursor: auto !important;
+  }
 }
