@@ -381,6 +381,13 @@ h3 {
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
 
+  .cursor-dot, .cursor-outline {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
   * {
     cursor: auto !important;
   }
