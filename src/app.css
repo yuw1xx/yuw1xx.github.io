@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+  .nav-hamburger { display: flex !important; }
+}
+@media (min-width: 601px) {
+  .nav-hamburger { display: none !important; }
+  /* Hide desktop nav items on mobile — they're inside the pill nav already */
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

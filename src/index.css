@@ -1,0 +1,129 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Background ───────────────────────────── */
+  --bg:                    #080010;
+
+  /* ── M3 Surface container tiers ──────────── */
+  --sc-lowest:             rgba(10,  4, 22, 0.95);
+  --sc-low:                rgba(16,  8, 34, 0.88);
+  --sc:                    rgba(22, 14, 44, 0.82);   /* cards */
+  --sc-high:               rgba(30, 20, 56, 0.88);   /* chips, elevated */
+  --sc-highest:            rgba(40, 28, 70, 0.92);   /* top-level raised */
+
+  /* ── Primary — purple ─────────────────────── */
+  --primary:               #D0BCFF;
+  --primary-dim:           #C084FC;
+  --primary-container:     #4A1D96;
+  --on-primary:            #21005D;
+  --on-primary-container:  #EADDFF;
+
+  /* ── Tertiary — red/pink ─────────────────── */
+  --tertiary:              #F87171;
+  --tertiary-dim:          #EF4444;
+  --tertiary-container:    #7F1D1D;
+  --on-tertiary-container: #FFD9E2;
+
+  /* ── Surface text ─────────────────────────── */
+  --on-surface:            #EDE9FE;
+  --on-surface-var:        #C4B5FD;
+  --on-surface-muted:      rgba(196, 181, 253, 0.55);
+
+  /* ── Outline ──────────────────────────────── */
+  --outline:               rgba(192, 132, 252, 0.18);
+  --outline-var:           rgba(192, 132, 252, 0.10);
+
+  /* ── Blob colors ──────────────────────────── */
+  --blob-purple:           rgba(124, 77, 255, 0.62);
+  --blob-red:              rgba(239, 68, 68, 0.48);
+  --blob-violet:           rgba(167, 139, 250, 0.42);
+  --blob-crimson:          rgba(220, 38, 38, 0.32);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg);
+  color: var(--on-surface);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+::selection { background: rgba(192, 132, 252, 0.35); }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary-container); border-radius: 2px; }
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* ── Blob morphing ─────────────────────────────── */
+@keyframes morph-a {
+  0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+  20%     { border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%; }
+  40%     { border-radius: 55% 45% 35% 65% / 45% 65% 35% 55%; }
+  60%     { border-radius: 30% 70% 60% 40% / 50% 40% 60% 50%; }
+  80%     { border-radius: 50% 50% 45% 55% / 30% 65% 35% 70%; }
+}
+@keyframes morph-b {
+  0%,100% { border-radius: 40% 60% 30% 70% / 70% 30% 70% 30%; }
+  25%     { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; }
+  50%     { border-radius: 35% 65% 65% 35% / 55% 45% 55% 45%; }
+  75%     { border-radius: 65% 35% 40% 60% / 30% 60% 40% 70%; }
+}
+@keyframes morph-c {
+  0%,100% { border-radius: 70% 30% 40% 60% / 45% 55% 45% 55%; }
+  33%     { border-radius: 45% 55% 65% 35% / 65% 35% 55% 45%; }
+  66%     { border-radius: 30% 70% 50% 50% / 55% 45% 30% 70%; }
+}
+@keyframes morph-d {
+  0%,100% { border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
+  50%     { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; }
+}
+
+/* ── Text shimmer ──────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
+}
+
+/* ── Cursor blink ──────────────────────────────── */
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+
+/* ── Scroll hint ───────────────────────────────── */
+@keyframes bounce-y {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(8px); }
+}
+
+/* ── Chip pulse glow ───────────────────────────── */
+@keyframes chip-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(192,132,252,0); }
+  50%     { box-shadow: 0 0 16px 2px rgba(192,132,252,0.25); }
+}
+
+/* ── Responsive helpers ────────────────────────── */
+@media (max-width: 640px) {
+  .desktop-nav { display: none !important; }
+  .hamburger   { display: flex !important; }
+}
+@media (min-width: 641px) {
+  .hamburger { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
