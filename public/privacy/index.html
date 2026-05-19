@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Resonance</title>
+  <meta name="description" content="Privacy Policy for Resonance, a local music player for Android." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:                   #080010;
+      --sc-low:               rgba(16,  8, 34, 0.88);
+      --sc:                   rgba(22, 14, 44, 0.82);
+      --sc-high:              rgba(30, 20, 56, 0.88);
+      --primary:              #D0BCFF;
+      --primary-dim:          #C084FC;
+      --primary-container:    #4A1D96;
+      --on-primary:           #21005D;
+      --on-primary-container: #EADDFF;
+      --tertiary:             #F87171;
+      --on-surface:           #EDE9FE;
+      --on-surface-var:       #C4B5FD;
+      --on-surface-muted:     rgba(196, 181, 253, 0.55);
+      --outline:              rgba(192, 132, 252, 0.18);
+      --outline-var:          rgba(192, 132, 252, 0.10);
+      --blob-purple:          rgba(124, 77, 255, 0.62);
+      --blob-red:             rgba(239, 68, 68, 0.48);
+      --blob-violet:          rgba(167, 139, 250, 0.42);
+      --blob-crimson:         rgba(220, 38, 38, 0.32);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--on-surface);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    ::selection { background: rgba(192, 132, 252, 0.35); }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-container); border-radius: 2px; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Blob animations ── */
+    @keyframes morph-a {
+      0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+      20%     { border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%; }
+      40%     { border-radius: 55% 45% 35% 65% / 45% 65% 35% 55%; }
+      60%     { border-radius: 30% 70% 60% 40% / 50% 40% 60% 50%; }
+      80%     { border-radius: 50% 50% 45% 55% / 30% 65% 35% 70%; }
+    }
+    @keyframes morph-b {
+      0%,100% { border-radius: 40% 60% 30% 70% / 70% 30% 70% 30%; }
+      25%     { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; }
+      50%     { border-radius: 35% 65% 65% 35% / 55% 45% 55% 45%; }
+      75%     { border-radius: 65% 35% 40% 60% / 30% 60% 40% 70%; }
+    }
+    @keyframes morph-c {
+      0%,100% { border-radius: 70% 30% 40% 60% / 45% 55% 45% 55%; }
+      33%     { border-radius: 45% 55% 65% 35% / 65% 35% 55% 45%; }
+      66%     { border-radius: 30% 70% 50% 50% / 55% 45% 30% 70%; }
+    }
+    @keyframes morph-d {
+      0%,100% { border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
+      50%     { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Background blobs ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    .blob::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+    .blob-1 {
+      left: 18%; top: 10%; width: 140vw; height: 130vw;
+      background: radial-gradient(ellipse at 38% 38%, var(--blob-purple) 0%, transparent 68%);
+      filter: blur(90px); animation: morph-a 20s ease-in-out infinite;
+    }
+    .blob-2 {
+      left: 75%; top: 55%; width: 130vw; height: 120vw;
+      background: radial-gradient(ellipse at 38% 38%, var(--blob-red) 0%, transparent 68%);
+      filter: blur(100px); animation: morph-b 26s ease-in-out infinite;
+    }
+    .blob-3 {
+      left: 45%; top: 80%; width: 120vw; height: 110vw;
+      background: radial-gradient(ellipse at 38% 38%, var(--blob-violet) 0%, transparent 68%);
+      filter: blur(80px); animation: morph-c 18s ease-in-out infinite;
+    }
+    .blob-4 {
+      left: 88%; top: 5%; width: 110vw; height: 100vw;
+      background: radial-gradient(ellipse at 38% 38%, var(--blob-crimson) 0%, transparent 68%);
+      filter: blur(110px); animation: morph-d 30s ease-in-out infinite;
+    }
+    .bg-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(8,0,16,0.72) 100%);
+    }
+
+    /* ── Navbar ── */
+    .nav-wrap {
+      position: fixed; top: 14px; left: 0; right: 0;
+      z-index: 200; display: flex; justify-content: center; pointer-events: none;
+    }
+    nav {
+      pointer-events: auto;
+      display: flex; align-items: center; gap: 4px;
+      padding: 6px 8px; border-radius: 32px;
+      background: rgba(17, 8, 32, 0.75);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(192, 132, 252, 0.14);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .nav-logo {
+      background: linear-gradient(135deg, #4B1094, #7C3AED);
+      border: none; border-radius: 22px;
+      padding: 8px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem; font-weight: 800;
+      color: #EDE9FE; cursor: pointer;
+      letter-spacing: 0.02em; margin-right: 4px;
+      box-shadow: 0 0 16px rgba(124,58,237,0.3);
+      text-decoration: none;
+      display: inline-flex; align-items: center;
+    }
+    .nav-logo:hover { opacity: 0.9; }
+    .nav-tag {
+      padding: 8px 14px; border-radius: 22px;
+      background: rgba(192,132,252,0.10);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--on-surface-var); letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    /* ── Page layout ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto;
+      padding: 120px 24px 80px;
+      animation: fade-up 0.6s ease both;
+    }
+
+    /* ── Header ── */
+    .app-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(208, 188, 255, 0.10);
+      border: 1px solid rgba(208, 188, 255, 0.20);
+      border-radius: 999px; padding: 6px 14px;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--primary); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .app-chip .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--primary); opacity: 0.7;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      color: var(--on-surface); line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    h1 span { color: var(--primary); }
+
+    .subtitle {
+      font-size: 0.85rem; color: var(--on-surface-muted);
+      margin-bottom: 48px; line-height: 1.6;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--sc-low);
+      border: 1px solid var(--outline);
+      border-radius: 24px;
+      padding: 36px 40px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 24px 20px; }
+    }
+
+    /* ── Sections ── */
+    .section { margin-bottom: 36px; }
+    .section:last-child { margin-bottom: 0; }
+
+    h2 {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--outline);
+    }
+
+    p {
+      font-size: 0.82rem; line-height: 1.85;
+      color: var(--on-surface-var); margin-bottom: 12px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 12px;
+    }
+    ul li {
+      font-size: 0.82rem; line-height: 1.7;
+      color: var(--on-surface-var);
+      padding-left: 20px; position: relative;
+    }
+    ul li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--primary-dim); font-weight: 700;
+    }
+
+    strong { color: var(--on-surface); font-weight: 700; }
+
+    /* ── Highlight boxes ── */
+    .highlight {
+      background: rgba(208, 188, 255, 0.06);
+      border: 1px solid rgba(208, 188, 255, 0.14);
+      border-left: 3px solid var(--primary-dim);
+      border-radius: 12px; padding: 14px 18px;
+      margin: 16px 0;
+    }
+    .highlight p { margin: 0; font-size: 0.80rem; }
+
+    .highlight-red {
+      background: rgba(248, 113, 113, 0.06);
+      border-color: rgba(248, 113, 113, 0.14);
+      border-left-color: var(--tertiary);
+    }
+
+    /* ── Service badges ── */
+    .service-list { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+    .service {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--sc); border: 1px solid var(--outline-var);
+      border-radius: 14px; padding: 14px 16px;
+    }
+    .service-icon {
+      width: 32px; height: 32px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: rgba(208, 188, 255, 0.10);
+    }
+    .service-body { flex: 1; }
+    .service-name {
+      font-size: 0.80rem; font-weight: 700;
+      color: var(--on-surface); margin-bottom: 4px;
+    }
+    .service-desc {
+      font-size: 0.76rem; color: var(--on-surface-muted); line-height: 1.6;
+    }
+    .service-optional {
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--primary); letter-spacing: 0.08em;
+      text-transform: uppercase; background: rgba(208, 188, 255, 0.10);
+      border: 1px solid rgba(208, 188, 255, 0.18);
+      border-radius: 999px; padding: 2px 8px;
+      margin-left: auto; flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    /* ── Email link ── */
+    .email-link {
+      color: var(--primary); font-weight: 700;
+      border-bottom: 1px solid rgba(208, 188, 255, 0.3);
+      transition: border-color 0.2s;
+    }
+    .email-link:hover { border-color: var(--primary); }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 0 24px 48px;
+      font-size: 0.72rem; color: var(--on-surface-muted);
+      letter-spacing: 0.04em;
+    }
+    footer a { color: var(--on-surface-var); }
+    footer a:hover { color: var(--primary); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Navbar -->
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="nav-logo">yuwixx</a>
+      <span class="nav-tag">resonance / privacy</span>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <div class="page">
+
+    <div class="app-chip">
+      <span class="dot"></span>
+      Resonance for Android
+    </div>
+
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="subtitle">
+      Effective date: May 19, 2025 &nbsp;·&nbsp; Version 2.0
+    </p>
+
+    <div class="card">
+
+      <div class="section">
+        <h2>The short version</h2>
+        <div class="highlight">
+          <p>Resonance is a <strong>fully local</strong> music player. It stores all data on your device and never sends it to any server controlled by the developer. No accounts, no telemetry, no ads — ever.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>What data the app stores</h2>
+        <p>All of the following is stored <strong>locally on your device only</strong> and never leaves it unless you explicitly enable optional features described below.</p>
+        <ul>
+          <li><strong>Music library</strong> — song metadata (title, artist, album, genre, year, file path) indexed from your device's MediaStore.</li>
+          <li><strong>Listening history</strong> — timestamps and play counts for songs you listen to, used to power the Statistics screen and smart shuffle.</li>
+          <li><strong>Playlists &amp; liked songs</strong> — names, song references, and ordering you create in the app.</li>
+          <li><strong>Playback queue</strong> — the current song queue, shuffle state, and repeat mode, persisted across restarts.</li>
+          <li><strong>Equalizer settings</strong> — band levels, preset choice, and enabled state.</li>
+          <li><strong>App preferences</strong> — every setting you configure (appearance, playback, library filters, etc.).</li>
+        </ul>
+        <p>You can export, delete, or clear all of this data at any time from within the app.</p>
+      </div>
+
+      <div class="section">
+        <h2>Permissions the app requests</h2>
+        <ul>
+          <li><strong>Read media / audio files</strong> — required to read music files from your device storage.</li>
+          <li><strong>Post notifications</strong> — to show the now-playing notification and media controls.</li>
+          <li><strong>Internet</strong> — only used for optional features you explicitly enable (see below). Never used for telemetry.</li>
+          <li><strong>Foreground service / Bluetooth</strong> — to keep playback running and respond to headphone controls.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Optional network features</h2>
+        <p>These features make network requests only when you choose to enable them. Each one is opt-in and can be disabled at any time in Settings.</p>
+
+        <div class="service-list">
+          <div class="service">
+            <div class="service-icon">🎵</div>
+            <div class="service-body">
+              <div class="service-name">Last.fm Scrobbling</div>
+              <div class="service-desc">When enabled, the title, artist, and album of songs you play are sent to Last.fm under your account. Governed by the <a href="https://www.last.fm/legal/privacy" class="email-link" target="_blank" rel="noopener">Last.fm Privacy Policy</a>.</div>
+            </div>
+            <span class="service-optional">opt-in</span>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">🖥️</div>
+            <div class="service-body">
+              <div class="service-name">Navidrome / Subsonic</div>
+              <div class="service-desc">When enabled, the app connects to a Navidrome server <strong>you provide and control</strong>. No data is sent to any third-party server; traffic goes only to your own server.</div>
+            </div>
+            <span class="service-optional">opt-in</span>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">🎨</div>
+            <div class="service-body">
+              <div class="service-name">Artist images</div>
+              <div class="service-desc">When enabled, artist names are sent to the Deezer public API to fetch artist photos. No personal information is transmitted — only the artist name string.</div>
+            </div>
+            <span class="service-optional">opt-in</span>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">🔤</div>
+            <div class="service-body">
+              <div class="service-name">Lyrics</div>
+              <div class="service-desc">When lyrics are fetched automatically, song title and artist are sent to the lrclib.net public API. No account or personal information is involved.</div>
+            </div>
+            <span class="service-optional">opt-in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>What we never do</h2>
+        <div class="highlight highlight-red">
+          <p>The developer does <strong>not</strong> collect analytics, crash reports, usage data, device identifiers, or any personal information. There are no ads, no third-party SDKs for tracking, and no remote configuration.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Data you share with others</h2>
+        <p>Resonance Share lets you send a song file directly to a nearby device using Nearby Connections or a QR Code over your local network. The song file is sent peer-to-peer; no data passes through any server controlled by the developer.</p>
+      </div>
+
+      <div class="section">
+        <h2>Backup &amp; restore</h2>
+        <p>The Backup &amp; Restore feature exports your liked songs and playlists to a JSON file saved to a location you choose on your device. This file contains song file paths and playlist names — nothing sensitive. It never leaves your device automatically.</p>
+      </div>
+
+      <div class="section">
+        <h2>Children's privacy</h2>
+        <p>Resonance is a general-purpose music player and does not knowingly collect information from children under 13. It collects no personal information at all, making it safe for all ages.</p>
+      </div>
+
+      <div class="section">
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes materially, the updated version will be published here with a new effective date. Continued use of the app after a policy update constitutes acceptance of the revised policy.</p>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+        <p>Questions or concerns about this privacy policy? Reach out at <a href="mailto:yuwixx@4d2.org" class="email-link">yuwixx@4d2.org</a>.</p>
+      </div>
+
+    </div><!-- .card -->
+  </div><!-- .page -->
+
+  <footer>
+    <p>© 2025 yuwixx &nbsp;·&nbsp; <a href="/">back to portfolio</a> &nbsp;·&nbsp; Resonance v2.0</p>
+  </footer>
+
+</body>
+</html>
