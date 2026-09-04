@@ -1,8 +1,7 @@
-import ReactiveBackground from './components/ReactiveBackground'
-import Shapes from './components/Shapes'
-import Navbar from './components/Navbar'
+import GridLines from './components/GridLines'
+import Sidebar from './components/Sidebar'
 import Hero from './components/Hero'
-import About from './components/About'
+import Info from './components/Info'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
@@ -11,16 +10,17 @@ import './index.css'
 export default function App() {
   return (
     <>
-      <ReactiveBackground />
-      <Shapes />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
+      <GridLines />
+      <div className="shell">
+        <Sidebar />
+        <main className="content">
+          <Hero />
+          <Info />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+      </div>
     </>
   )
 }

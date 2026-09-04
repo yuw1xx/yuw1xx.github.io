@@ -5,120 +5,137 @@
 }
 
 :root {
-  /* ── Background ───────────────────────────── */
-  --bg:                    #080010;
+  /* ── Base ─────────────────────────────────── */
+  --bg:              #050505;
+  --surface:         #0a0a0a;
 
-  /* ── M3 Surface container tiers ──────────── */
-  --sc-lowest:             rgba(10,  4, 22, 0.95);
-  --sc-low:                rgba(16,  8, 34, 0.88);
-  --sc:                    rgba(22, 14, 44, 0.82);   /* cards */
-  --sc-high:               rgba(30, 20, 56, 0.88);   /* chips, elevated */
-  --sc-highest:            rgba(40, 28, 70, 0.92);   /* top-level raised */
+  /* ── Grayscale ramp (the only color in the system) ── */
+  --white:           #f5f5f5;
+  --gray-1:          #c9c9c9;
+  --gray-2:          #8c8c8c;
+  --gray-3:          #4a4a4a;
 
-  /* ── Primary — purple ─────────────────────── */
-  --primary:               #D0BCFF;
-  --primary-dim:           #C084FC;
-  --primary-container:     #4A1D96;
-  --on-primary:            #21005D;
-  --on-primary-container:  #EADDFF;
+  /* ── Text ─────────────────────────────────── */
+  --muted:           rgba(245, 245, 245, 0.55);
+  --dim:             rgba(245, 245, 245, 0.3);
 
-  /* ── Tertiary — red/pink ─────────────────── */
-  --tertiary:              #F87171;
-  --tertiary-dim:          #EF4444;
-  --tertiary-container:    #7F1D1D;
-  --on-tertiary-container: #FFD9E2;
+  /* ── Borders ──────────────────────────────── */
+  --border:          #1e1e1e;
+  --border-bright:   rgba(245, 245, 245, 0.4);
 
-  /* ── Surface text ─────────────────────────── */
-  --on-surface:            #EDE9FE;
-  --on-surface-var:        #C4B5FD;
-  --on-surface-muted:      rgba(196, 181, 253, 0.55);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* ── Outline ──────────────────────────────── */
-  --outline:               rgba(192, 132, 252, 0.18);
-  --outline-var:           rgba(192, 132, 252, 0.10);
-
-  /* ── Blob colors ──────────────────────────── */
-  --blob-purple:           rgba(124, 77, 255, 0.62);
-  --blob-red:              rgba(239, 68, 68, 0.48);
-  --blob-violet:           rgba(167, 139, 250, 0.42);
-  --blob-crimson:          rgba(220, 38, 38, 0.32);
+  --rail-w: 380px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-sans);
+  font-size: 17px;
   background: var(--bg);
-  color: var(--on-surface);
+  color: var(--white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   cursor: default;
 }
 
-::selection { background: rgba(192, 132, 252, 0.35); }
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 
-::-webkit-scrollbar { width: 3px; }
+.mono {
+  font-family: var(--font-mono);
+}
+
+::selection { background: var(--white); color: var(--bg); }
+
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--primary-container); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--gray-3); }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-2); }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; }
 
-/* ── Blob morphing ─────────────────────────────── */
-@keyframes morph-a {
-  0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
-  20%     { border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%; }
-  40%     { border-radius: 55% 45% 35% 65% / 45% 65% 35% 55%; }
-  60%     { border-radius: 30% 70% 60% 40% / 50% 40% 60% 50%; }
-  80%     { border-radius: 50% 50% 45% 55% / 30% 65% 35% 70%; }
+/* ── Underline-reveal text link ─────────────────────────────── */
+.link {
+  position: relative;
+  display: inline-block;
 }
-@keyframes morph-b {
-  0%,100% { border-radius: 40% 60% 30% 70% / 70% 30% 70% 30%; }
-  25%     { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; }
-  50%     { border-radius: 35% 65% 65% 35% / 55% 45% 55% 45%; }
-  75%     { border-radius: 65% 35% 40% 60% / 30% 60% 40% 70%; }
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transition: right 0.25s cubic-bezier(0.65, 0, 0.35, 1);
 }
-@keyframes morph-c {
-  0%,100% { border-radius: 70% 30% 40% 60% / 45% 55% 45% 55%; }
-  33%     { border-radius: 45% 55% 65% 35% / 65% 35% 55% 45%; }
-  66%     { border-radius: 30% 70% 50% 50% / 55% 45% 30% 70%; }
+.link:hover::after { right: 0; }
+
+/* ── Structural grid guide-lines (very faint) ──────────────────── */
+.grid-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
 }
-@keyframes morph-d {
-  0%,100% { border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
-  50%     { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; }
+.grid-lines span {
+  width: 1px;
+  height: 100%;
+  background: var(--border);
+  opacity: 0.6;
 }
 
-/* ── Text shimmer ──────────────────────────────── */
-@keyframes shimmer {
-  0%   { background-position: -300% center; }
-  100% { background-position:  300% center; }
+/* ── Layout shell ───────────────────────────────────────────── */
+.shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--rail-w) 1fr;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* ── Cursor blink ──────────────────────────────── */
-@keyframes blink {
-  0%,100% { opacity: 1; }
-  50%     { opacity: 0; }
+.rail {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px 48px 40px;
+  border-right: 1px solid var(--border);
 }
 
-/* ── Scroll hint ───────────────────────────────── */
+.content {
+  min-width: 0;
+  border-left: 1px solid transparent;
+}
+
+@media (max-width: 999px) {
+  .shell { grid-template-columns: 1fr; }
+  .rail {
+    position: static;
+    height: auto;
+    padding: 40px 24px 32px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .rail > div:last-child { margin-top: 40px; }
+  .grid-lines { display: none; }
+}
+
 @keyframes bounce-y {
-  0%,100% { transform: translateY(0); }
-  50%     { transform: translateY(8px); }
-}
-
-/* ── Chip pulse glow ───────────────────────────── */
-@keyframes chip-glow {
-  0%,100% { box-shadow: 0 0 0 0 rgba(192,132,252,0); }
-  50%     { box-shadow: 0 0 16px 2px rgba(192,132,252,0.25); }
-}
-
-/* ── Responsive helpers ────────────────────────── */
-@media (max-width: 640px) {
-  .desktop-nav { display: none !important; }
-  .hamburger   { display: flex !important; }
-}
-@media (min-width: 641px) {
-  .hamburger { display: none !important; }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
