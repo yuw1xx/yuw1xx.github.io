@@ -2,23 +2,21 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { fetchRepos } from '../lib/github'
 
-interface Lang { name: string; pct: number }
+interface Lang { name: string; count: number; pct: number }
 
+// Derived from each repo's primary `language` field — already included in
+// the repo-list response, so this needs zero extra GitHub API calls.
 async function computeLangs(): Promise<Lang[]> {
   const repos = await fetchRepos()
-  const totals: Record<string, number> = {}
-  await Promise.all(repos.map(async r => {
-    try {
-      const lr = await fetch(`https://api.github.com/repos/yuw1xx/${r.name}/languages`)
-      if (!lr.ok) return
-      const langs: Record<string, number> = await lr.json()
-      for (const [l, b] of Object.entries(langs)) totals[l] = (totals[l] ?? 0) + b
-    } catch { /* skip */ }
-  }))
-  const total = Object.values(totals).reduce((a, b) => a + b, 0)
+  const counts: Record<string, number> = {}
+  for (const r of repos) {
+    if (!r.language) continue
+    counts[r.language] = (counts[r.language] ?? 0) + 1
+  }
+  const total = Object.values(counts).reduce((a, b) => a + b, 0)
   if (!total) return []
-  return Object.entries(totals).sort(([, a], [, b]) => b - a).slice(0, 6)
-    .map(([name, bytes]) => ({ name, pct: Math.round((bytes / total) * 1000) / 10 }))
+  return Object.entries(counts).sort(([, a], [, b]) => b - a).slice(0, 6)
+    .map(([name, count]) => ({ name, count, pct: Math.round((count / total) * 1000) / 10 }))
 }
 
 export default function GithubLanguages() {
@@ -34,7 +32,7 @@ export default function GithubLanguages() {
   return (
     <div ref={ref} style={{ marginTop: 56 }}>
       <div className="mono" style={{ fontSize: '0.75rem', color: 'var(--gray-3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 20 }}>
-        languages — across public repos
+        languages — by repo, primary language
       </div>
 
       {status === 'loading' && (
